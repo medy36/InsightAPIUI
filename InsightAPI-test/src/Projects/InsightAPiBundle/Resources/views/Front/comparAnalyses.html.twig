@@ -1,0 +1,13 @@
+{% extends 'ProjectsInsightAPiBundle::newLayout.html.twig' %}
+
+{% set menuSelected = 'comparAnalyses' %}
+
+{% block breadcrumbs %}
+    {{ addBreadcrumb({ link: path('projects_insight_Dashboard_index'), title: 'projects.insight.compare.analyses'|trans({'%html%': '<b class="icon-" ></b> '}) }) }}
+    {{ parent() }}
+{% endblock breadcrumbs %}
+
+{% block body %}
+
+
+{% endblock %}

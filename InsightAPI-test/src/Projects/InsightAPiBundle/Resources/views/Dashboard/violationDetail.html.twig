@@ -1,0 +1,67 @@
+{% extends 'ProjectsInsightAPiBundle::Layout.html.twig' %}
+
+{% block body %}
+
+
+                   <h3 class="text-center text-info">
+				1. Liste des violations de l'Analyse N°:  {{ analyNbr}} 
+			</h3>
+                        <h4 class="text-center text-warning">Le nombre de lignes retournées:{{ lastAnalyViols|length }}</h4>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							title
+						</th>
+						<th>
+							message
+						</th>
+						<th>
+							resource
+						</th>
+                                                <th>
+							line
+						</th>
+                                                <th>
+							severity
+						</th>
+                                                 <th>
+							category
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+                                      {% for viol in lastAnalyViols %}
+                                           
+                                     
+					<tr>
+						<td>
+							...
+						</td>
+						<td>
+							{{ viol.title|e }}
+						</td>
+						<td>
+							{{ viol.message|e }}
+						</td>
+						<td>
+							{{ viol.resource|e }}
+						</td>
+                                                <td>
+							{{ viol.line|e }}
+						</td>
+                                                <td>
+							{{ viol.severity|e }}
+						</td>
+                                                <td>
+							{{ viol.category|e }}
+						</td>
+					</tr>
+					   {% endfor %}
+				</tbody>
+			</table>
+                        
+ {% endblock body %}

@@ -1,0 +1,13 @@
+parameters:
+#    projects_insight_a_pi.example.class: Projects\InsightAPiBundle\Example
+
+services:
+#    projects_insight_a_pi.example:
+#        class: %projects_insight_a_pi.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    studywork.breadcrumb.extension:
+        class: Projects\InsightAPiBundle\Twig\BreadcrumbExtension
+        arguments:
+            - "@service_container"
+        tags:
+            - { name: twig.extension }

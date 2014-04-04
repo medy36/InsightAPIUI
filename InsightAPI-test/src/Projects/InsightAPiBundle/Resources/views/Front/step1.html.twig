@@ -1,0 +1,71 @@
+{% extends 'ProjectsInsightAPiBundle::newLayout.html.twig' %}
+
+
+{% set menuSelected = 'searchAnalyses' %}
+
+{% block breadcrumbs %}
+    {{ addBreadcrumb({ link: path('projects_insight_Dashboard_index'), title: 'front.breadcrumbs.student.search.%html%_home'|trans({'%html%': '<b class="icon-search" ></b> '}) }) }}
+    {{ parent() }}
+{% endblock breadcrumbs %}
+
+{% block body %}
+
+<div class="widget ">
+        <div class="whead"><h6>Static visible toolbar</h6></div>
+            <div class="shownpars">
+                <div class="formRow">
+                     <form action="{{ path('projects_insight_Dashboard_index') }}" method="post">
+
+
+					      <div class="form-group">
+					        <input id="analysisId" name="analysisId" class="span3" placeholder="Search" required="required" type="text">
+					      </div>
+					       <input class="buttonM bLightBlue" type="submit" value="submit" name="submit">
+				      </form>
+				  </div>
+			</div>
+</div>
+ {% if AnalyViols is defined %}
+  <h3 class="text-center text-info">
+				1. Liste des violations de l'Analyse N°:  {{ analyNbr}} 
+			</h3>
+                        <h4 class="text-center text-warning">Le nombre de lignes retournées:{{ AnalyViols|length }}</h4>
+		
+
+			<table cellspacing="0" cellpadding="0" border="0" class="dTable dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
+                <thead>
+                <tr role="row">
+                    <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">id<span style="display: block;" class="sorting"></span></th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">title</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">message</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">line</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">resource</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">severity</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">category</th>
+                             
+                </tr>                
+                
+                
+                </thead>
+                
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    {% if AnalyViols is defined %}
+                      {% for r in AnalyViols %}
+                    <tr class="gradeA odd">
+                        <td class="  sorting_1">{{r.id|e}}</td>
+                        <td class=" ">{{ r.title|e }}</td>
+                        <td class=" ">{{ r.message|e }}</td>
+                        <td class="center ">{{ r.line|e }}</td>
+                        <td class="center ">{{ r.resource|e }}</td>
+                        <td class="center ">{{ r.severity|e }}</td>
+                        <td class="center ">{{ r.category|e }}</td>
+                    </tr>
+                     {% endfor %}
+                    {% endif %}
+                </tbody>
+                    </table>
+                    
+
+{% endif %}
+
+{% endblock %}

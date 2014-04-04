@@ -1,0 +1,101 @@
+{% extends 'ProjectsInsightAPiBundle::newLayout.html.twig' %}
+
+{% block body %}
+
+<div class="fluid">
+     {{ form_start(form) }}
+    {{ form_errors(form) }}
+            <div class="widget grid3">
+                <div class="whead"><h6>Grid3</h6></div>
+                <div class="body">{{ form_row(form.analysis) }}</div>
+            </div>
+            <div class="widget grid3">
+                <div class="whead"><h6>Grid3</h6></div>
+                <div class="body">{{ form_row(form.severity) }}</div>
+            </div>
+            <div class="widget grid3">
+                <div class="whead"><h6>Grid3</h6></div>
+                <div class="body"> {{ form_row(form.resource) }}</div>
+            </div>
+           
+        </div>
+  
+    
+
+       <input type="submit" name="submit-filter" value="submit-filter" /> 
+{{ form_end(form) }}
+
+    <h3 class="text-center text-info">
+        {% if result is defined %}
+				1. Liste des violations dans la resource: {{ result|length}}
+			</h3>
+                       
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							title
+						</th>
+						<th>
+							message
+						</th>
+						<th>
+							line
+						</th>
+                                                <th>
+							resource
+						</th>
+                                                <th>
+							severity 
+						</th>
+                                                <th>
+							category
+						</th>
+                                                
+                                                
+					</tr>
+				</thead>
+				<tbody>
+                                      {% for r in result %}
+                                           
+                                     
+					<tr>
+						<td>
+							{{r.id|e}}
+						</td>
+						<td>
+							{{ r.title|e }}
+						</td>
+						<td>
+							{{ r.message|e }}
+						</td>
+						<td>
+							{{ r.line|e }}
+						</td>
+                                                <td>
+							{{ r.resource|e }}
+						</td>
+                                                <td>
+							{{ r.severity|e }}
+						</td>
+                                                <td>
+							{{ r.category|e }}
+						</td>
+                                                 
+                                                
+                                                
+					</tr>
+					   {% endfor %}
+				</tbody>
+			</table>
+       
+      
+           {% else %}
+           <p class="bg-primary">No Result found!</p>
+       
+        {% endif %}
+{% endblock body %}
+

@@ -1,0 +1,149 @@
+{% extends 'ProjectsInsightAPiBundle::newLayout.html.twig' %}
+
+{% block body %}
+
+{# Analysis by $slug #}
+
+ <h3 class="text-center text-info">
+				1. Analysis: 
+			</h3>
+                        <h4 class="text-center text-warning">Le nombre de lignes retournées:</h4>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>
+							links
+						</th>
+                                                <th>Show violations</th>
+						<th>
+							number
+						</th>
+						<th>
+							grade
+						</th>
+						<th>
+							nextGrade
+						</th>
+                                                <th>
+							remediationCost 
+						</th>
+                                                <th>
+							remediationCostForNextGrade
+						</th>
+                                                <th class="error">
+							nbViolations
+						</th>
+                                                <th>
+							beginAt
+						</th>
+                                                <th>
+							endAt
+						</th>
+                                                <th>
+							duration
+						</th>
+                                                <th>
+							failureMessage
+						</th>
+                                                <th>
+							failureCode
+						</th>
+                                                <th>
+							failed
+						</th>
+                                                <th>
+							status
+						</th>
+                                                <th>
+							statusMessage
+						</th>
+                                                <th>
+							isAltered
+						</th>
+                                                <th>
+							violations
+						</th>
+                                                
+					</tr>
+				</thead>
+				<tbody>
+                                      {% for analys in analysis %}
+                                           
+                                     
+					<tr>
+						<td class="dropdown-submenu">
+							
+						 <div class="btn-group">
+                                                    <button class="btn">Liens  </button> <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+                                                   <ul class="dropdown-menu">
+                                                         {% for link in analys.links %}
+                                                           <li>
+                                                                   <a href="{{ link.href|e }}">{{ link.href|e }}</a>
+                                                           </li>
+                                                           {%endfor%}
+                                                   </ul>
+                                                </div>
+                                               
+				
+						</td>
+                                                <td> 
+                                                 <a  class="btn" href="{{ path('projects_insight_a_pi_ViolDetailpage', {'slug': analys.number} ) }}">Load</a>
+                                                
+                                                </td>
+						<td>
+							{{ analys.number|e }}
+						</td>
+						<td>
+							{{ analys.grade|e }}
+						</td>
+                                                <td>
+							{{ analys.nextGrade|e }}
+						</td>
+                                                <td>
+							{{ analys.remediationCost|e }}
+						</td>
+                                                <td>
+							{{ analys.remediationCostForNextGrade|e }}
+						</td>
+                                                <td class="error">
+							{{ analys.nbViolations|e }}
+						</td>
+                                                <td>
+							{{ analys.beginAt|date("m/d/Y") }}
+						</td>
+                                                <td>
+							{{ analys.endAt|date("m/d/Y") }}
+						</td>
+                                                <td>
+							{{ analys.duration|date("m/d/Y")  }}
+						</td>
+                                                <td>
+							{{ analys.failureMessage|e }}
+						</td>
+                                                <td>
+							{{ analys.failureCode|e }}
+						</td>
+                                                <td>
+							{{ analys.failed|e }}
+						</td>
+                                                <td>
+							{{ analys.status|e }}
+						</td>
+                                                 <td>
+							{{ analys.statusMessage|e }}
+						</td>
+                                                 <td>
+							{{ analys.isAltered|e }}
+						</td>
+                                                 <td>
+							{{ analys.violations|e }}
+						</td>
+						
+					</tr>
+					   {% endfor %}
+				</tbody>
+</table>
+				
+
+
+{%endblock%}

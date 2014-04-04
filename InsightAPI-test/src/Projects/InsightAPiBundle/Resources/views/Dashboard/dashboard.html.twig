@@ -1,0 +1,251 @@
+{% extends 'ProjectsInsightAPiBundle::newLayout.html.twig' %}
+
+{% block body %}
+
+<div class="progress">
+				<div class="bar">
+				</div>
+			</div>
+			<div class="btn-group">
+				 <button class="btn">Action</button> <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="#">Get Analyses</a>
+					</li>
+					<li>
+						<a href="#">Get Analysis</a>
+					</li>
+					<li>
+						<a href="#">Get Violations</a>
+					</li>
+                                        <li>
+						<a href="#">Get Violation</a>
+					</li>
+					<li class="divider">
+					</li>
+					<li class="dropdown-submenu">
+						 <a tabindex="-1" href="#">More options</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="#">Action</a>
+							</li>
+							<li>
+								<a href="#">Another action</a>
+							</li>
+							<li>
+								<a href="#">Something else here</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+                        <h3 class="text-center text-info">
+				1. Liste des liens de la réponse Analyses. 
+			</h3>
+                        <h4 class="text-center text-warning">Le nombre de lignes retournées:{{ nbLinkAnalyses }}</h4>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							Href
+						</th>
+						<th>
+							Rel
+						</th>
+						<th>
+							Type
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+                                      {% for link in links %}
+                                           
+                                     
+					<tr>
+						<td>
+							...
+						</td>
+						<td>
+							{{ link.href|e }}
+						</td>
+						<td>
+							{{ link.rel|e }}
+						</td>
+						<td>
+							{{ link.type|e }}
+						</td>
+					</tr>
+					   {% endfor %}
+				</tbody>
+			</table>
+			 <h3 class="text-center text-info">
+				1. Liste des Analyses: 
+			</h3>
+                        <h4 class="text-center text-warning">Le nombre de lignes retournées:{{ nbAnalyses }}</h4>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>
+							links
+						</th>
+                                                <th>Show violations</th>
+						<th>
+							number
+						</th>
+						<th>
+							grade
+						</th>
+						<th>
+							nextGrade
+						</th>
+                                                <th>
+							remediationCost 
+						</th>
+                                                <th>
+							remediationCostForNextGrade
+						</th>
+                                                <th class="error">
+							nbViolations
+						</th>
+                                                <th>
+							beginAt
+						</th>
+                                                <th>
+							endAt
+						</th>
+                                                <th>
+							duration
+						</th>
+                                                <th>
+							failureMessage
+						</th>
+                                                <th>
+							failureCode
+						</th>
+                                                <th>
+							failed
+						</th>
+                                                <th>
+							status
+						</th>
+                                                <th>
+							statusMessage
+						</th>
+                                                <th>
+							isAltered
+						</th>
+                                                <th>
+							violations
+						</th>
+                                                
+					</tr>
+				</thead>
+				<tbody>
+                                      {% for analysis in analyses %}
+                                           
+                                     
+					<tr>
+						<td class="dropdown-submenu">
+							
+						 <div class="btn-group">
+                                                    <button class="btn">Liens (nbr:{{ nbAnalyses }}) </button> <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+                                                   <ul class="dropdown-menu">
+                                                         {% for link in analysis.links %}
+                                                           <li>
+                                                                   <a href="{{ link.href|e }}">{{ link.href|e }}</a>
+                                                           </li>
+                                                           {%endfor%}
+                                                   </ul>
+                                                </div>
+                                               
+				
+						</td>
+                                                <td> 
+                                                 <a  class="btn" href="{{ path('projects_insight_a_pi_ViolDetailpage', {'slug': analysis.number} ) }}">Load</a>
+                                                
+                                                </td>
+						<td>
+							{{ analysis.number|e }}
+						</td>
+						<td>
+							{{ analysis.grade|e }}
+						</td>
+                                                <td>
+							{{ analysis.nextGrade|e }}
+						</td>
+                                                <td>
+							{{ analysis.remediationCost|e }}
+						</td>
+                                                <td>
+							{{ analysis.remediationCostForNextGrade|e }}
+						</td>
+                                                <td class="error">
+							{{ analysis.nbViolations|e }}
+						</td>
+                                                <td>
+							{{ analysis.beginAt|date("m/d/Y") }}
+						</td>
+                                                <td>
+							{{ analysis.endAt|date("m/d/Y") }}
+						</td>
+                                                <td>
+							{{ analysis.duration|date("m/d/Y")  }}
+						</td>
+                                                <td>
+							{{ analysis.failureMessage|e }}
+						</td>
+                                                <td>
+							{{ analysis.failureCode|e }}
+						</td>
+                                                <td>
+							{{ analysis.failed|e }}
+						</td>
+                                                <td>
+							{{ analysis.status|e }}
+						</td>
+                                                 <td>
+							{{ analysis.statusMessage|e }}
+						</td>
+                                                 <td>
+							{{ analysis.isAltered|e }}
+						</td>
+                                                 <td>
+							{{ analysis.violations|e }}
+						</td>
+						
+					</tr>
+					   {% endfor %}
+				</tbody>
+			</table>
+			<div class="pagination">
+				<ul>
+					<li>
+						<a href="#">Prev</a>
+					</li>
+					<li>
+						<a href="#">1</a>
+					</li>
+					<li>
+						<a href="#">2</a>
+					</li>
+					<li>
+						<a href="#">3</a>
+					</li>
+					<li>
+						<a href="#">4</a>
+					</li>
+					<li>
+						<a href="#">5</a>
+					</li>
+					<li>
+						<a href="#">Next</a>
+					</li>
+				</ul>
+			</div>
+	
+	{% endblock body %}
+        
+        

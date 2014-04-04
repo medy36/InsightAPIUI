@@ -1,0 +1,34 @@
+projects_insight_a_pi_indexpage:
+    pattern:  /
+    defaults: { _controller: ProjectsInsightAPiBundle:Default:index }
+projects_insight_a_pi_testpage:
+    pattern:  /apiTest
+    defaults: { _controller: ProjectsInsightAPiBundle:Default:ApiTest }
+
+projects_insight_a_pi_Layoutpage:
+    pattern:  /dashboardOld
+    defaults: { _controller: ProjectsInsightAPiBundle:API:dashboard }
+    
+    
+projects_insight_a_pi_ViolDetailpage:
+    pattern:  /dashboard/Violations/{slug}
+    defaults: { _controller: ProjectsInsightAPiBundle:API:LoadViols }
+    
+    
+projects_insight_a_pi_Filterpage:
+    pattern:  /testFilter
+    defaults: { _controller: ProjectsInsightAPiBundle:API:testFilter }
+    
+# Dashboard Controller Actions
+
+projects_insight_Dashboard_index:
+    pattern:  /dashboard
+    defaults: { _controller: ProjectsInsightAPiBundle:Dashboard:index }
+
+projects_insight_Dashboard_analyses:
+    pattern:  /dashboard/analyses
+    defaults: { _controller: ProjectsInsightAPiBundle:Dashboard:analyses }
+
+projects_insight_Dashboard_analysis:
+    pattern:  /dashboard/analysis/{slug}
+    defaults: { _controller: ProjectsInsightAPiBundle:Dashboard:analysis }

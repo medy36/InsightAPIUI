@@ -1,0 +1,182 @@
+<?php
+
+namespace Projects\InsightAPiBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+ 
+
+/**
+ * Link
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Projects\InsightAPiBundle\Entity\LinkRepository")
+ */
+class Link
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="href", type="string", length=255)
+     */
+    private $href;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rel", type="string", length=10)
+     */
+    private $rel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Projects\InsightAPiBundle\Entity\Analyses", inversedBy="links")
+     * @ORM\JoinColumn(name="analyses_id", referencedColumnName="id")
+     **/
+    private $analyses;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Projects\InsightAPiBundle\Entity\Analysis", inversedBy="links")
+     * @ORM\JoinColumn(name="analysis_id", referencedColumnName="id")
+     **/
+    private $analysis;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set href
+     *
+     * @param string $href
+     * @return Link
+     */
+    public function setHref($href)
+    {
+        $this->href = $href;
+
+        return $this;
+    }
+
+    /**
+     * Get href
+     *
+     * @return string 
+     */
+    public function getHref()
+    {
+        return $this->href;
+    }
+
+    /**
+     * Set rel
+     *
+     * @param string $rel
+     * @return Link
+     */
+    public function setRel($rel)
+    {
+        $this->rel = $rel;
+
+        return $this;
+    }
+
+    /**
+     * Get rel
+     *
+     * @return string 
+     */
+    public function getRel()
+    {
+        return $this->rel;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Link
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set analyses
+     *
+     * @param \Projects\InsightAPiBundle\Entity\Analyses $analyses
+     * @return Link
+     */
+    public function setAnalyses(\Projects\InsightAPiBundle\Entity\Analyses $analyses = null)
+    {
+        $this->analyses = $analyses;
+
+        return $this;
+    }
+
+    /**
+     * Get analyses
+     *
+     * @return \Projects\InsightAPiBundle\Entity\Analyses 
+     */
+    public function getAnalyses()
+    {
+        return $this->analyses;
+    }
+
+    /**
+     * Set analysis
+     *
+     * @param \Projects\InsightAPiBundle\Entity\Analysis $analysis
+     * @return Link
+     */
+    public function setAnalysis(\Projects\InsightAPiBundle\Entity\Analysis $analysis = null)
+    {
+        $this->analysis = $analysis;
+
+        return $this;
+    }
+
+    /**
+     * Get analysis
+     *
+     * @return \Projects\InsightAPiBundle\Entity\Analysis 
+     */
+    public function getAnalysis()
+    {
+        return $this->analysis;
+    }
+}

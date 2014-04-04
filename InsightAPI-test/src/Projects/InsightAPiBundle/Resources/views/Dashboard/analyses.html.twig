@@ -1,0 +1,56 @@
+{% extends 'ProjectsInsightAPiBundle::newLayout.html.twig' %}
+
+{% block body %}
+
+{# Liste the analyses from DB #}
+ <h3 class="text-center text-info">
+				1. Analyses list:  
+			</h3>
+                        <h4 class="text-center text-warning">Lenght:{{ analyses|length }}</h4>
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>
+							#
+						</th>
+						<th>
+							created
+						</th>
+						<th>
+							action
+						</th>
+						
+                                              
+					</tr>
+				</thead>
+				<tbody>
+                                      {% for a in analyses %}
+                                           
+                                     
+					<tr>
+						<td>
+							{{ a.id|e }}
+						</td>
+						<td>
+							{{ a.createdAt|date("m/d/Y") }}
+						</td>
+						<td class=" submenu">
+							
+						 <div class="btn-group">
+                                                     
+                                                     <a href="{{ path('projects_insight_Dashboard_analysis', { 'slug': a.id }) }}" class="btn">Show Analysis </a>
+                                                   
+                                                </div>
+                                               
+				
+						</td>
+						
+                                                
+                                             
+					</tr>
+					   {% endfor %}
+				</tbody>
+			</table>
+
+
+{%endblock%}

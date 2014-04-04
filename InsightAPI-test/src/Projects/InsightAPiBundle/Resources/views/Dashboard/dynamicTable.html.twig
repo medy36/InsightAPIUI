@@ -1,0 +1,77 @@
+{% extends 'ProjectsInsightAPiBundle::newLayout.html.twig' %}
+
+{% block body %}
+
+
+
+
+<div class="widget">
+            <div class="whead"><h6>Static visible toolbar</h6></div>
+            <div class="shownpars">
+                <div class="formRow">
+                        <div class="grid3"><label>Filter:</label></div>
+                         {% if form is defined%}
+                            {{ form_start(form) }}
+                            {{ form_errors(form) }}
+                        <div class="grid9">
+                            <ul class="datesRange">
+                                <li>{{ form_row(form.analysis) }}</li>
+                                <li class="sep">-</li>
+                                <li>{{ form_row(form.severity) }}</li>
+                                <li class="sep">-</li>
+                                <li>{{ form_row(form.resource) }}</li>                                
+                            </ul>
+          <ul>
+              <li>
+                            
+               <input class="buttonM bLightBlue" type="submit" value="submit-filter" name="submit-filter">
+                        </div>
+                        {{ form_end(form) }}
+                        
+                        {%endif%}
+                    </div>
+                <div role="grid" class="dataTables_wrapper span12" id="DataTables_Table_1_wrapper">
+                   
+               </div>
+       
+
+         <table cellspacing="0" cellpadding="0" border="0" class="dTable dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
+                <thead>
+                <tr role="row">
+                    <th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">id<span style="display: block;" class="sorting"></span></th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">title</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">message</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">line</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">resource</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">severity</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">category</th>
+                             
+                </tr>                
+                
+                
+                </thead>
+                
+                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                    {%if result is defined%}
+                      {% for r in result %}
+                    <tr class="gradeA odd">
+                        <td class="  sorting_1">{{r.id|e}}</td>
+                        <td class=" ">{{ r.title|e }}</td>
+                        <td class=" ">{{ r.message|e }}</td>
+                        <td class="center ">{{ r.line|e }}</td>
+                        <td class="center ">{{ r.resource|e }}</td>
+                        <td class="center ">{{ r.severity|e }}</td>
+                        <td class="center ">{{ r.category|e }}</td>
+                    </tr>
+                     {% endfor %}
+                    {%endif%}
+                </tbody>
+                    </table>
+                    
+                
+              </div> 
+            </div>
+        </div>
+
+
+	{% endblock body %}
